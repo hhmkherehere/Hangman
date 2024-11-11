@@ -4,4 +4,4 @@ python
 koding
 utvikling
 skole
-klovneskole
+klovn

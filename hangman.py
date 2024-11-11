@@ -8,7 +8,7 @@ def velg_ord():
 def spill_hangman():
     ordet = velg_ord().upper()
     gjettet = set()
-    forsok = 6  
+    forsok = 8  
 
     print("Velkommen til Hangman!")
     while forsok > 0:

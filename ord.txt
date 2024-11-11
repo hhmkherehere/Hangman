@@ -5,3 +5,6 @@ koding
 utvikling
 skole
 klovn
+grener
+lilla
+kardemomme

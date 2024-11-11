@@ -1,7 +1,8 @@
 import random
 
 def velg_ord():
-    with open('ordliste.txt', 'r') as f:
+    with open('C:\\Users\\hanna\\OneDrive - Akershus fylkeskommune\\vg2_it\\Utvikling\\Versjonshåndtering\\Hangman-game\\ord.txt', 'r') as f:
+
         ord_liste = f.read().splitlines()
     return random.choice(ord_liste)
 
@@ -16,7 +17,7 @@ def spill_hangman():
         print("Gjett ordet:", ' '.join(skjerm_ord))
         
         if '_' not in skjerm_ord:
-            print("Gratulerer, du vant!")
+            print("Gratulerer, du klate det!")
             break
 
         gjett = input("Gjett en bokstav: ").upper()
@@ -24,10 +25,10 @@ def spill_hangman():
             print("Du har allerede gjettet denne bokstaven.")
         elif gjett in ordet:
             print(f"Bokstaven {gjett} er i ordet!")
-            gjettet.add(guett)
+            gjettet.add(gjett)
         else:
             print(f"Bokstaven {gjett} er ikke i ordet.")
-            gjettet.add(guett)
+            gjettet.add(gjett)
             forsok -= 1
             print(f"Du har {forsok} forsøk igjen.")
 

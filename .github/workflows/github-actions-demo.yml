@@ -1,18 +1,31 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main  # Trigges når du gjør en push til 'main'-grenen (endre etter behov)
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      # Sjekk ut repoet for å ha tilgang til koden
+      - name: Sjekk ut koden
+        uses: actions/checkout@v3
+      # Sett opp Node.js (kan endres avhengig av språk/teknologi)
+      - name: Sett opp Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Angi versjon etter behov
+      # Installer avhengigheter
+      - name: Installer avhengigheter
+        run: npm install
+      # Kjør tester
+      - name: Kjør tester
+        run: npm test
+      # Valgfritt: Kjøre en linter
+      - name: Kjør linter
+        run: npm run lint  # Endre til linter-kommandoen som passer ditt prosjekt

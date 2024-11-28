@@ -1,31 +1,42 @@
-name: CI Workflow
+name: Python CI Workflow
 
 on:
   push:
     branches:
-      - main  # Trigges når du gjør en push til 'main'-grenen (endre etter behov)
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      # Sjekk ut repoet for å ha tilgang til koden
+      # Sjekk ut prosjektet
       - name: Sjekk ut koden
         uses: actions/checkout@v3
-      # Sett opp Node.js (kan endres avhengig av språk/teknologi)
-      - name: Sett opp Node.js
-        uses: actions/setup-node@v3
+
+      # Sett opp Python
+      - name: Sett opp Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '16'  # Angi versjon etter behov
+          python-version: 3.10
+
       # Installer avhengigheter
       - name: Installer avhengigheter
-        run: npm install
-      # Kjør tester
-      - name: Kjør tester
-        run: npm test
-      # Valgfritt: Kjøre en linter
-      - name: Kjør linter
-        run: npm run lint  # Endre til linter-kommandoen som passer ditt prosjekt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Sjekk koden med flake8
+      - name: Sjekk koden med Flake8
+        run: |
+          pip install flake8
+          flake8 .
+
+      # Kjør tester med pytest
+      - name: Kjør tester med Pytest
+        run: |
+          pip install pytest
+          pytest

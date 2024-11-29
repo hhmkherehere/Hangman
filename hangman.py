@@ -5,7 +5,7 @@ def velg_ord():
     try:
         with open('ord.txt', 'r') as f:
             ord_liste = f.read().splitlines()
-            if not ord_liste:  # Check if the file is empty
+            if not ord_liste:
                 print("Filen 'ord.txt' er tom!")
                 return None
     except FileNotFoundError:
@@ -19,7 +19,7 @@ def spill_hangman():
     ordet = velg_ord()
 
     if ordet is None:
-        return  # If no word could be selected, stop the game.
+        return
 
     ordet = ordet.upper()
     gjettet = set()
@@ -40,7 +40,7 @@ def spill_hangman():
 
         gjett = input("Gjett en bokstav: ").upper()
 
-        # Input validation: ensure it's a single letter
+
         while len(gjett) != 1 or not gjett.isalpha():
             print("Vennligst tast inn én bokstav.")
             gjett = input("Gjett en bokstav: ").upper()

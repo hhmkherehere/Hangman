@@ -6,6 +6,7 @@ def velg_ord():
         ord_liste = f.read().splitlines()
     return random.choice(ord_liste)
 
+
 def spill_hangman():
     ordet = velg_ord().upper()
     gjettet = set()
@@ -13,7 +14,8 @@ def spill_hangman():
 
     print("Velkommen til Hangman!")
     while forsok > 0:
-        skjerm_ord = [bokstav if bokstav in gjettet else '_' for bokstav in ordet]
+        skjerm_ord = [bokstav if bokstav in gjettet else '_' for 
+                      bokstav in ordet]
         print("Gjett ordet:", ' '.join(skjerm_ord))
         
         if '_' not in skjerm_ord:

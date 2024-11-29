@@ -40,7 +40,7 @@ def spill_hangman():
 
         gjett = input("Gjett en bokstav: ").upper()
 
-
+        # Input validation: ensure it's a single letter
         while len(gjett) != 1 or not gjett.isalpha():
             print("Vennligst tast inn én bokstav.")
             gjett = input("Gjett en bokstav: ").upper()
@@ -55,7 +55,7 @@ def spill_hangman():
             gjettet.add(gjett)
             forsok -= 1
             print(f"Du har {forsok} forsøk igjen.")
-        print("")  # Blank line for readability
+        print("")
 
     if forsok == 0:
         print(f"Beklager, du tapte. Ordet var: {ordet}")

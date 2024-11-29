@@ -17,19 +17,19 @@ def velg_ord():
 
 def spill_hangman():
     ordet = velg_ord()
-    
+
     if ordet is None:
         return  # If no word could be selected, stop the game.
-    
-    ordet = ordet.upper()  # Convert the word to uppercase for consistent guessing
+
+    ordet = ordet.upper()
     gjettet = set()
-    forsok = 8  
+    forsok = 8
 
     print("Velkommen til Hangman!")
-    
+
     while forsok > 0:
         skjerm_ord = [
-            bokstav if bokstav in gjettet else '_' 
+            bokstav if bokstav in gjettet else '_'
             for bokstav in ordet
         ]
         print("Gjett ordet:", ' '.join(skjerm_ord))
@@ -39,12 +39,12 @@ def spill_hangman():
             break
 
         gjett = input("Gjett en bokstav: ").upper()
-        
+    
         # Input validation: ensure it's a single letter
         while len(gjett) != 1 or not gjett.isalpha():
             print("Vennligst tast inn én bokstav.")
             gjett = input("Gjett en bokstav: ").upper()
-        
+    
         if gjett in gjettet:
             print("Du har allerede gjettet denne bokstaven.")
         elif gjett in ordet:

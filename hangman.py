@@ -11,7 +11,7 @@ def velg_ord():
     except FileNotFoundError:
         print("Filen 'ord.txt' ble ikke funnet!")
         return None
-    
+
     return random.choice(ord_liste)
 
 
@@ -33,18 +33,18 @@ def spill_hangman():
             for bokstav in ordet
         ]
         print("Gjett ordet:", ' '.join(skjerm_ord))
-        
+
         if '_' not in skjerm_ord:
             print("Gratulerer, du klarte det!")
             break
 
         gjett = input("Gjett en bokstav: ").upper()
-    
+
         # Input validation: ensure it's a single letter
         while len(gjett) != 1 or not gjett.isalpha():
             print("Vennligst tast inn én bokstav.")
             gjett = input("Gjett en bokstav: ").upper()
-    
+
         if gjett in gjettet:
             print("Du har allerede gjettet denne bokstaven.")
         elif gjett in ordet:

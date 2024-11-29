@@ -13,18 +13,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Step 1: Check out code
       - name: Sjekk ut koden
         uses: actions/checkout@v3
 
+      # Step 2: Set up Python
       - name: Sett opp Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
+      # Step 3: Install dependencies (Flake8)
       - name: Installer Flake8
         run: |
           python -m pip install --upgrade pip
           pip install flake8
 
+      # Step 4: Run Flake8
       - name: Sjekk koden med Flake8
-        run: flake8 .
+        run: |
+          flake8 . || exit 1  # Ensure flake8 errors stop the workflow
